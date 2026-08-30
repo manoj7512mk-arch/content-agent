@@ -1,49 +1,49 @@
 {
   "agent": "planner",
-  "generatedAt": "2026-08-30T06:08:28.777Z",
-  "cadenceNote": "Posting 6 reels over 7 days maintains a strong, consistent daily presence while giving the audience one strategic rest day on Wednesday to prevent fatigue.",
+  "generatedAt": "2026-08-30T11:44:44.689Z",
+  "cadenceNote": "6 posts are distributed over 7 days with one rest day on Thursday to maximize engagement without fatiguing the audience, posting consistently during peak evening hours.",
   "calendar": [
     {
       "date": "2026-08-31",
       "dayLabel": "Monday, Aug 31",
-      "ideaTitle": "4 Oversized Hoodies Under 999",
-      "suggestedTime": "7:00 PM IST",
-      "note": "Strong budget-focused hook to kick off the week with high engagement."
+      "ideaTitle": "5 Oversized Hoodies Under ₹999",
+      "suggestedTime": "6:30 PM IST",
+      "note": "Strong budget-focused casualwear hook to kick off the week."
     },
     {
       "date": "2026-09-01",
       "dayLabel": "Tuesday, Sep 1",
-      "ideaTitle": "The Only 3 Denim Fits You Need in 2026",
+      "ideaTitle": "Myntra Denim Jeans Haul for Men",
       "suggestedTime": "7:00 PM IST",
-      "note": "Trend-focused foundational piece right at the start of the new month."
+      "note": "Follows up casualwear with everyday denim staples."
     },
     {
       "date": "2026-09-02",
       "dayLabel": "Wednesday, Sep 2",
-      "ideaTitle": "Upgrade Your Summer Fit: Linen Shirts Edition",
+      "ideaTitle": "Date Night Outfits: Black Shirt Edition",
+      "suggestedTime": "7:30 PM IST",
+      "note": "Mid-week shift toward evening/dating style."
+    },
+    {
+      "date": "2026-09-03",
+      "dayLabel": "Thursday, Sep 3",
+      "ideaTitle": "Affordable Luxury Perfumes for Men",
       "suggestedTime": "7:00 PM IST",
-      "note": "Seasonal style guide to capture ongoing warm-weather traffic."
+      "note": "Breaks up clothing content with grooming/fragrance."
     },
     {
       "date": "2026-09-04",
       "dayLabel": "Friday, Sep 4",
-      "ideaTitle": "Date Night Aesthetic Outfits for Men",
-      "suggestedTime": "7:30 PM IST",
-      "note": "Friday evening placement aligns naturally with weekend date-night planning mindsets."
+      "ideaTitle": "Streetwear Cargo Pants You Need Right Now",
+      "suggestedTime": "6:00 PM IST",
+      "note": "Weekend-ready streetwear post just in time for Friday evening."
     },
     {
       "date": "2026-09-05",
       "dayLabel": "Saturday, Sep 5",
-      "ideaTitle": "Minimalist Streetwear Essentials Starter Pack",
-      "suggestedTime": "6:00 PM IST",
-      "note": "Saturday evening lifestyle/wardrobe-building content for weekend shoppers."
-    },
-    {
-      "date": "2026-09-06",
-      "dayLabel": "Sunday, Sep 6",
-      "ideaTitle": "Elevated Smart-Casual Looks for the Office",
-      "suggestedTime": "7:00 PM IST",
-      "note": "Sunday evening preparation slot for the upcoming work week."
+      "ideaTitle": "3 Aesthetic Watch & Bracelet Combos",
+      "suggestedTime": "12:00 PM IST",
+      "note": "Weekend accessory focus for casual daytime browsing."
     }
   ]
 }
