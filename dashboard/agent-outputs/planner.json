@@ -1,0 +1,49 @@
+{
+  "agent": "planner",
+  "generatedAt": "2026-08-30T06:08:28.777Z",
+  "cadenceNote": "Posting 6 reels over 7 days maintains a strong, consistent daily presence while giving the audience one strategic rest day on Wednesday to prevent fatigue.",
+  "calendar": [
+    {
+      "date": "2026-08-31",
+      "dayLabel": "Monday, Aug 31",
+      "ideaTitle": "4 Oversized Hoodies Under 999",
+      "suggestedTime": "7:00 PM IST",
+      "note": "Strong budget-focused hook to kick off the week with high engagement."
+    },
+    {
+      "date": "2026-09-01",
+      "dayLabel": "Tuesday, Sep 1",
+      "ideaTitle": "The Only 3 Denim Fits You Need in 2026",
+      "suggestedTime": "7:00 PM IST",
+      "note": "Trend-focused foundational piece right at the start of the new month."
+    },
+    {
+      "date": "2026-09-02",
+      "dayLabel": "Wednesday, Sep 2",
+      "ideaTitle": "Upgrade Your Summer Fit: Linen Shirts Edition",
+      "suggestedTime": "7:00 PM IST",
+      "note": "Seasonal style guide to capture ongoing warm-weather traffic."
+    },
+    {
+      "date": "2026-09-04",
+      "dayLabel": "Friday, Sep 4",
+      "ideaTitle": "Date Night Aesthetic Outfits for Men",
+      "suggestedTime": "7:30 PM IST",
+      "note": "Friday evening placement aligns naturally with weekend date-night planning mindsets."
+    },
+    {
+      "date": "2026-09-05",
+      "dayLabel": "Saturday, Sep 5",
+      "ideaTitle": "Minimalist Streetwear Essentials Starter Pack",
+      "suggestedTime": "6:00 PM IST",
+      "note": "Saturday evening lifestyle/wardrobe-building content for weekend shoppers."
+    },
+    {
+      "date": "2026-09-06",
+      "dayLabel": "Sunday, Sep 6",
+      "ideaTitle": "Elevated Smart-Casual Looks for the Office",
+      "suggestedTime": "7:00 PM IST",
+      "note": "Sunday evening preparation slot for the upcoming work week."
+    }
+  ]
+}
