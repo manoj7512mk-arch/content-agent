@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Ops — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFAF8;
+    --card: #FFFFFF;
+    --ink: #111214;
+    --ink-soft: #53555C;
+    --ink-faint: #9A9C9F;
+    --line: #E2E0D6;
+    --cobalt: #1E3AF1;
+    --lime: #D7FF3D;
+    --tag-orange: #FF4D1E;
+
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--cobalt); }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px 64px; }
+
+  /* Masthead */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 18px 16px;
+    margin-bottom: 4px;
+  }
+  .masthead-inner { max-width: 720px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .wordmark { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.02em; text-transform: uppercase; }
+  .wordmark span { color: var(--lime); }
+  .sync-status { font-family: var(--font-mono); font-size: 11px; color: #B8B9BD; display: flex; align-items: center; gap: 6px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); display: inline-block; flex-shrink: 0; }
+  .dot.grey { background: #5A5C61; }
+
+  /* Agent pipeline strip */
+  .pipeline {
+    display: flex; gap: 8px; overflow-x: auto; padding: 16px 0 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .chip {
+    flex-shrink: 0; background: var(--card); border: 1px solid var(--line);
+    border-radius: 3px; padding: 8px 12px; min-width: 128px;
+  }
+  .chip.deferred { border-style: dashed; opacity: 0.65; }
+  .chip-name { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft); display: flex; align-items: center; gap: 5px; }
+  .chip-time { font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint); margin-top: 4px; }
+
+  .section-label {
+    font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--ink-faint); margin: 32px 0 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+  /* Ticket card (signature element) */
+  .ticket {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    position: relative;
+    padding: 20px 20px 18px;
+    margin-bottom: 14px;
+  }
+  .ticket::before {
+    content: '';
+    position: absolute; left: 0; right: 0; top: 74px;
+    height: 0;
+    border-top: 1.5px dashed var(--line);
+  }
+  .ticket.hero::before { top: 132px; }
+  .ticket-top { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; gap: 10px; }
+  .ticket-date { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); }
+  .ticket-time { font-family: var(--font-mono); font-size: 12px; background: var(--lime); color: var(--ink); padding: 2px 7px; border-radius: 2px; font-weight: 700; white-space: nowrap; }
+  .ticket-title { font-family: var(--font-display); font-size: 21px; line-height: 1.15; text-transform: uppercase; margin: 0 0 4px; }
+  .ticket-body { padding-top: 16px; }
+  .ticket-note { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+
+  .hero-tag {
+    display: inline-block; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--tag-orange); border: 1px solid var(--tag-orange);
+    padding: 2px 8px; border-radius: 2px; margin-bottom: 10px;
+  }
+  .hook-text { font-size: 16px; font-weight: 600; line-height: 1.4; margin: 0 0 14px; }
+  .slides-list { margin: 0 0 14px; padding-left: 0; list-style: none; }
+  .slides-list li { font-size: 14px; color: var(--ink-soft); padding: 6px 0 6px 26px; position: relative; border-top: 1px solid var(--line); }
+  .slides-list li:first-child { border-top: none; }
+  .slides-list li::before { content: attr(data-n); position: absolute; left: 0; top: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); }
+
+  .caption-box {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 3px;
+    padding: 12px 14px; font-size: 13px; line-height: 1.5; white-space: pre-wrap;
+    margin-bottom: 10px; color: var(--ink);
+  }
+  .copy-btn {
+    font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    background: var(--ink); color: var(--paper); border: none; border-radius: 3px;
+    padding: 9px 16px; cursor: pointer; width: 100%;
+  }
+  .copy-btn:active { background: var(--cobalt); }
+  .copy-btn.copied { background: var(--lime); color: var(--ink); }
+
+  /* Queue (compact tickets) */
+  .queue-item {
+    display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
+  }
+  .queue-item:last-child { border-bottom: none; }
+  .queue-date { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); width: 68px; flex-shrink: 0; }
+  .queue-title { font-size: 14px; font-weight: 600; flex: 1; }
+  .queue-time { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); flex-shrink: 0; }
+
+  /* Field report (Analyst) */
+  .report-summary { font-size: 15px; line-height: 1.6; margin: 0 0 18px; }
+  .report-group { margin-bottom: 16px; }
+  .report-group h3 {
+    font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--cobalt); margin: 0 0 8px;
+  }
+  .report-group ul { margin: 0; padding-left: 18px; }
+  .report-group li { font-size: 14px; line-height: 1.55; margin-bottom: 7px; color: var(--ink-soft); }
+
+  /* Idea cards (secondary) */
+  .idea-card { border: 1px solid var(--line); border-radius: 3px; padding: 13px 15px; margin-bottom: 10px; background: var(--card); }
+  .idea-format {
+    font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; color: var(--ink-faint);
+    border: 1px solid var(--line); display: inline-block; padding: 1px 6px; border-radius: 2px; margin-bottom: 6px;
+  }
+  .idea-title { font-weight: 700; font-size: 14px; margin: 0 0 4px; }
+  .idea-concept { font-size: 13px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+  .empty {
+    font-size: 13px; color: var(--ink-faint); font-style: italic; padding: 16px 0;
+  }
+
+  footer {
+    margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); text-align: center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="wordmark">@<span id="handle">creator</span> <span style="color:#B8B9BD">/</span> content ops</div>
+    <div class="sync-status"><span class="dot" id="sync-dot"></span><span id="sync-time">loading…</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="pipeline" id="pipeline"></div>
+
+  <div class="section-label">Next Drop</div>
+  <div id="hero"></div>
+
+  <div class="section-label">Queue</div>
+  <div class="ticket" id="queue-wrap" style="padding-top:6px;">
+    <div id="queue"></div>
+  </div>
+
+  <div class="section-label">Field Report — Analyst</div>
+  <div class="ticket" id="report"></div>
+
+  <div class="section-label">Idea Bank</div>
+  <div id="ideas"></div>
+
+  <footer>
+    Content Agent Dashboard · data refreshes each time the pipeline runs ·
+    <a href="https://github.com/manoj7512mk-arch/content-agent" target="_blank" rel="noopener">view repo</a>
+  </footer>
+</div>
+
+<script>
+const BASE = 'dashboard/';
+const FILES = {
+  data: BASE + 'data.json',
+  analyst: BASE + 'agent-outputs/analyst.json',
+  ideator: BASE + 'agent-outputs/ideator.json',
+  hookscript: BASE + 'agent-outputs/hookscript.json',
+  planner: BASE + 'agent-outputs/planner.json',
+};
+
+const AGENTS = [
+  { key: 'analyst', label: 'Analyst' },
+  { key: 'ideator', label: 'Ideator' },
+  { key: 'hookscript', label: 'Hook & Script' },
+  { key: 'planner', label: 'Planner' },
+  { key: 'dmmanager', label: 'DM Manager', deferred: true },
+];
+
+function relativeTime(iso) {
+  if (!iso) return '—';
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const mins = Math.round(diffMs / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + 'm ago';
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return hrs + 'h ago';
+  return Math.round(hrs / 24) + 'd ago';
+}
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+}
+
+async function loadJson(url) {
+  try {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
+
+function renderPipeline(outputs) {
+  const el = document.getElementById('pipeline');
+  el.innerHTML = AGENTS.map(a => {
+    const out = outputs[a.key];
+    const active = !a.deferred && out;
+    return `
+      <div class="chip ${a.deferred ? 'deferred' : ''}">
+        <div class="chip-name"><span class="dot ${active ? '' : 'grey'}"></span>${a.label}</div>
+        <div class="chip-time">${a.deferred ? 'deferred' : (out ? relativeTime(out.generatedAt) : 'no data')}</div>
+      </div>`;
+  }).join('');
+}
+
+function renderHero(planner, hookscript) {
+  const el = document.getElementById('hero');
+  if (!planner || !planner.calendar || planner.calendar.length === 0) {
+    el.innerHTML = `<div class="ticket"><div class="empty">No scheduled posts yet — run the agents to generate a plan.</div></div>`;
+    return;
+  }
+  const today = new Date().toISOString().slice(0, 10);
+  const sorted = [...planner.calendar].sort((a, b) => (a.date > b.date ? 1 : -1));
+  const next = sorted.find(c => c.date >= today) || sorted[0];
+  const script = hookscript && hookscript.scripts
+    ? hookscript.scripts.find(s => s.ideaTitle === next.ideaTitle)
+    : null;
+
+  let slidesHtml = '';
+  if (script && script.slides && script.slides.length) {
+    slidesHtml = '<ul class="slides-list">' + script.slides.map((s, i) =>
+      `<li data-n="${String(i + 2).padStart(2, '0')}">${escapeHtml(s)}</li>`
+    ).join('') + '</ul>';
+  }
+
+  const captionHtml = script
+    ? `<div class="caption-box" id="caption-text">${escapeHtml(script.caption)}</div>
+       <button class="copy-btn" id="copy-caption-btn">Copy caption</button>`
+    : '';
+
+  el.innerHTML = `
+    <div class="ticket hero fade-in">
+      <div class="ticket-top">
+        <span class="ticket-date">${next.dayLabel || fmtDate(next.date)}</span>
+        <span class="ticket-time">${next.suggestedTime || 'TBD'}</span>
+      </div>
+      <div class="hero-tag">Next scheduled post</div>
+      <div class="ticket-title">${escapeHtml(next.ideaTitle)}</div>
+      ${next.note ? `<div class="ticket-note">${escapeHtml(next.note)}</div>` : ''}
+      <div class="ticket-body">
+        ${script ? `<div class="hook-text">${escapeHtml(script.hook)}</div>` : ''}
+        ${slidesHtml}
+        ${captionHtml}
+      </div>
+    </div>
+  `;
+
+  const btn = document.getElementById('copy-caption-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const text = document.getElementById('caption-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy caption'; btn.classList.remove('copied'); }, 1800);
+      });
+    });
+  }
+}
+
+function renderQueue(planner) {
+  const el = document.getElementById('queue');
+  if (!planner || !planner.calendar || planner.calendar.length === 0) {
+    el.innerHTML = `<div class="empty">Nothing queued yet.</div>`;
+    return;
+  }
+  const sorted = [...planner.calendar].sort((a, b) => (a.date > b.date ? 1 : -1));
+  el.innerHTML = sorted.map(c => `
+    <div class="queue-item">
+      <div class="queue-date">${fmtDate(c.date)}</div>
+      <div class="queue-title">${escapeHtml(c.ideaTitle)}</div>
+      <div class="queue-time">${escapeHtml(c.suggestedTime || '')}</div>
+    </div>
+  `).join('');
+  if (planner.cadenceNote) {
+    el.innerHTML += `<div class="ticket-note" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);">${escapeHtml(planner.cadenceNote)}</div>`;
+  }
+}
+
+function renderReport(analyst) {
+  const el = document.getElementById('report');
+  if (!analyst) {
+    el.innerHTML = `<div class="empty">No analysis yet — run the Analyst agent.</div>`;
+    return;
+  }
+  function group(title, items) {
+    if (!items || items.length === 0) return '';
+    return `<div class="report-group"><h3>${title}</h3><ul>${items.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul></div>`;
+  }
+  el.innerHTML = `
+    <p class="report-summary">${escapeHtml(analyst.summary)}</p>
+    ${group("What's working for competitors", analyst.topPerformerInsights)}
+    ${group('Gaps in your account', analyst.ownAccountGaps)}
+    ${group('Recommendations', analyst.recommendations)}
+  `;
+}
+
+function renderIdeas(ideator) {
+  const el = document.getElementById('ideas');
+  if (!ideator || !ideator.ideas || ideator.ideas.length === 0) {
+    el.innerHTML = `<div class="ticket"><div class="empty">No ideas yet — run the Ideator agent.</div></div>`;
+    return;
+  }
+  el.innerHTML = ideator.ideas.map(idea => `
+    <div class="idea-card">
+      <div class="idea-format">${escapeHtml(idea.format || '')}</div>
+      <div class="idea-title">${escapeHtml(idea.title)}</div>
+      <p class="idea-concept">${escapeHtml(idea.concept || '')}</p>
+    </div>
+  `).join('');
+}
+
+async function init() {
+  const [data, analyst, ideator, hookscript, planner] = await Promise.all([
+    loadJson(FILES.data),
+    loadJson(FILES.analyst),
+    loadJson(FILES.ideator),
+    loadJson(FILES.hookscript),
+    loadJson(FILES.planner),
+  ]);
+
+  document.getElementById('handle').textContent = (data && data.myUsername) || 'creator';
+
+  const mostRecent = [analyst, ideator, hookscript, planner]
+    .filter(Boolean)
+    .map(o => o.generatedAt)
+    .sort()
+    .pop();
+  document.getElementById('sync-time').textContent = mostRecent ? 'synced ' + relativeTime(mostRecent) : 'no data yet';
+  if (!mostRecent) document.getElementById('sync-dot').classList.add('grey');
+
+  renderPipeline({ analyst, ideator, hookscript, planner });
+  renderHero(planner, hookscript);
+  renderQueue(planner);
+  renderReport(analyst);
+  renderIdeas(ideator);
+}
+
+init();
+</script>
+
+</body>
+</html>
