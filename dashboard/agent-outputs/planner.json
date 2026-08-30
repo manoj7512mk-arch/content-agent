@@ -1,49 +1,70 @@
 {
   "agent": "planner",
-  "generatedAt": "2026-08-30T11:49:56.048Z",
-  "cadenceNote": "6 posts are distributed over 7 days with a strategic mix of streetwear, denim, styling, and accessories to maintain high engagement without burning out the audience.",
+  "generatedAt": "2026-08-30T19:46:45.222Z",
+  "cadenceNote": "Strategic 3x/day distribution balancing high-intent shopping scripts for evening slots, travel and casual essentials for afternoons, and quick style inspiration for mornings.",
   "calendar": [
     {
       "date": "2026-08-31",
       "dayLabel": "Monday, Aug 31",
-      "ideaTitle": "5 Essential Streetwear Hoodies Under ₹1500",
-      "suggestedTime": "7:00 PM IST",
-      "note": "Kicks off the week with high-value budget streetwear to capture peak Monday evening scroll traffic."
+      "suggestedTime": "11:00 AM IST",
+      "ideaTitle": "College Casuals Under ₹299",
+      "note": "Budget-friendly morning inspiration for students starting their week."
+    },
+    {
+      "date": "2026-08-31",
+      "dayLabel": "Monday, Aug 31",
+      "suggestedTime": "4:00 PM IST",
+      "ideaTitle": "Summer Linen Pants Under ₹499",
+      "note": "Afternoon comfort drop targeting warm-weather practical buying."
+    },
+    {
+      "date": "2026-08-31",
+      "dayLabel": "Monday, Aug 31",
+      "suggestedTime": "8:00 PM IST",
+      "ideaTitle": "Stacked Fit Denim Jeans Lookbook",
+      "note": "High-engagement streetwear aesthetic for peak evening scrolling."
     },
     {
       "date": "2026-09-01",
       "dayLabel": "Tuesday, Sep 1",
-      "ideaTitle": "The Only 3 Pairs of Jeans Every Man Needs",
-      "suggestedTime": "7:00 PM IST",
-      "note": "Follows up the streetwear post with foundational denim essentials for a cohesive menswear theme."
+      "suggestedTime": "11:00 AM IST",
+      "ideaTitle": "Minimalist Smart Casual Shirts",
+      "note": "Clean, office-ready style inspiration to kick off Tuesday morning."
+    },
+    {
+      "date": "2026-09-01",
+      "dayLabel": "Tuesday, Sep 1",
+      "suggestedTime": "4:00 PM IST",
+      "ideaTitle": "Airport Look Essentials",
+      "note": "Afternoon travel comfort guide for mid-week planners."
+    },
+    {
+      "date": "2026-09-01",
+      "dayLabel": "Tuesday, Sep 1",
+      "suggestedTime": "8:00 PM IST",
+      "ideaTitle": "Oversized Streetwear Hoodies Combo",
+      "note": "Cozy, high-appeal streetwear bundle for nighttime browsing."
     },
     {
       "date": "2026-09-02",
       "dayLabel": "Wednesday, Sep 2",
-      "ideaTitle": "How to Style an Oversized Shirt 3 Ways",
-      "suggestedTime": "6:30 PM IST",
-      "note": "Mid-week multi-way styling content drives high saves and shares."
-    },
-    {
-      "date": "2026-09-03",
-      "dayLabel": "Thursday, Sep 3",
-      "ideaTitle": "3 Minimalist Watches That Look Expensive",
-      "suggestedTime": "7:00 PM IST",
-      "note": "Accessory focus shifts the visual variety while keeping the affordable luxury angle."
-    },
-    {
-      "date": "2026-09-04",
-      "dayLabel": "Friday, Sep 4",
-      "ideaTitle": "Date Night Outfits: Casual vs. Formal",
-      "suggestedTime": "6:00 PM IST",
-      "note": "Perfect timing for Friday evening right before weekend date nights."
-    },
-    {
-      "date": "2026-09-05",
-      "dayLabel": "Saturday, Sep 5",
-      "ideaTitle": "Airport Look Essentials for Men",
       "suggestedTime": "11:00 AM IST",
-      "note": "Weekend travel context fits a late morning schedule as people prep for weekend trips."
+      "ideaTitle": "Men's Streetwear Accessories & Fragrances",
+      "note": "Detail-oriented styling tips to get inspiration flowing mid-day."
+    },
+    {
+      "date": "2026-09-02",
+      "dayLabel": "Wednesday, Sep 2",
+      "suggestedTime": "4:00 PM IST",
+      "ideaTitle": "All-Black Streetwear Essentials",
+      "note": "Versatile monochrome layering guide for afternoon engagement."
+    },
+    {
+      "date": "2026-09-02",
+      "dayLabel": "Wednesday, Sep 2",
+      "suggestedTime": "8:00 PM IST",
+      "ideaTitle": "Date Night Outfits Starting ₹699",
+      "note": "High-intent evening purchase content targeting weekend plans."
     }
   ]
 }
