@@ -42,7 +42,8 @@ function buildPrompt(data, analyst) {
   }
 
   lines.push(`
-Generate 6 specific content ideas for @${data.myUsername} to post next. Respond with ONLY valid JSON, no markdown fences, matching exactly:
+GenerateGenerate 9 specific content ideas for @${data.myUsername} to post next (the creator now posts 3x/day,
+so these 9 ideas cover the next 3 days). Respond with ONLY valid JSON, no markdown fences, matching exactly:
 {
   "ideas": [
     {
