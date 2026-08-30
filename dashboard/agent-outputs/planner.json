@@ -1,49 +1,49 @@
 {
   "agent": "planner",
-  "generatedAt": "2026-08-30T11:44:44.689Z",
-  "cadenceNote": "6 posts are distributed over 7 days with one rest day on Thursday to maximize engagement without fatiguing the audience, posting consistently during peak evening hours.",
+  "generatedAt": "2026-08-30T11:49:56.048Z",
+  "cadenceNote": "6 posts are distributed over 7 days with a strategic mix of streetwear, denim, styling, and accessories to maintain high engagement without burning out the audience.",
   "calendar": [
     {
       "date": "2026-08-31",
       "dayLabel": "Monday, Aug 31",
-      "ideaTitle": "5 Oversized Hoodies Under ₹999",
-      "suggestedTime": "6:30 PM IST",
-      "note": "Strong budget-focused casualwear hook to kick off the week."
+      "ideaTitle": "5 Essential Streetwear Hoodies Under ₹1500",
+      "suggestedTime": "7:00 PM IST",
+      "note": "Kicks off the week with high-value budget streetwear to capture peak Monday evening scroll traffic."
     },
     {
       "date": "2026-09-01",
       "dayLabel": "Tuesday, Sep 1",
-      "ideaTitle": "Myntra Denim Jeans Haul for Men",
+      "ideaTitle": "The Only 3 Pairs of Jeans Every Man Needs",
       "suggestedTime": "7:00 PM IST",
-      "note": "Follows up casualwear with everyday denim staples."
+      "note": "Follows up the streetwear post with foundational denim essentials for a cohesive menswear theme."
     },
     {
       "date": "2026-09-02",
       "dayLabel": "Wednesday, Sep 2",
-      "ideaTitle": "Date Night Outfits: Black Shirt Edition",
-      "suggestedTime": "7:30 PM IST",
-      "note": "Mid-week shift toward evening/dating style."
+      "ideaTitle": "How to Style an Oversized Shirt 3 Ways",
+      "suggestedTime": "6:30 PM IST",
+      "note": "Mid-week multi-way styling content drives high saves and shares."
     },
     {
       "date": "2026-09-03",
       "dayLabel": "Thursday, Sep 3",
-      "ideaTitle": "Affordable Luxury Perfumes for Men",
+      "ideaTitle": "3 Minimalist Watches That Look Expensive",
       "suggestedTime": "7:00 PM IST",
-      "note": "Breaks up clothing content with grooming/fragrance."
+      "note": "Accessory focus shifts the visual variety while keeping the affordable luxury angle."
     },
     {
       "date": "2026-09-04",
       "dayLabel": "Friday, Sep 4",
-      "ideaTitle": "Streetwear Cargo Pants You Need Right Now",
+      "ideaTitle": "Date Night Outfits: Casual vs. Formal",
       "suggestedTime": "6:00 PM IST",
-      "note": "Weekend-ready streetwear post just in time for Friday evening."
+      "note": "Perfect timing for Friday evening right before weekend date nights."
     },
     {
       "date": "2026-09-05",
       "dayLabel": "Saturday, Sep 5",
-      "ideaTitle": "3 Aesthetic Watch & Bracelet Combos",
-      "suggestedTime": "12:00 PM IST",
-      "note": "Weekend accessory focus for casual daytime browsing."
+      "ideaTitle": "Airport Look Essentials for Men",
+      "suggestedTime": "11:00 AM IST",
+      "note": "Weekend travel context fits a late morning schedule as people prep for weekend trips."
     }
   ]
 }
