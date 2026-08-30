@@ -45,3 +45,9 @@ jobs:
           git add dashboard/agent-outputs/
           git diff --staged --quiet && echo "No changes to commit" || git commit -m "Update agent outputs"
           git push
+
+      - name: Send Telegram report
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/report.js
