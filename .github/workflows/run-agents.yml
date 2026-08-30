@@ -23,10 +23,15 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/agents/analyst.js
 
+      - name: Run Ideator agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/agents/ideator.js
+
       - name: Commit results back to repo
         run: |
           git config user.name "content-agent-bot"
           git config user.email "actions@github.com"
-          git add dashboard/agent-outputs/analyst.json
-          git diff --staged --quiet && echo "No changes to commit" || git commit -m "Update Analyst agent output"
+          git add dashboard/agent-outputs/
+          git diff --staged --quiet && echo "No changes to commit" || git commit -m "Update agent outputs"
           git push
