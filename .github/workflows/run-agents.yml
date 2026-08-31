@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Run Analyst agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -38,12 +41,15 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/agents/planner.js
 
+      - name: Generate slide images
+        run: node scripts/agents/imagegen.js
+
       - name: Commit results back to repo
         run: |
           git config user.name "content-agent-bot"
           git config user.email "actions@github.com"
-          git add dashboard/agent-outputs/
-          git diff --staged --quiet && echo "No changes to commit" || git commit -m "Update agent outputs"
+          git add dashboard/agent-outputs/ dashboard/generated-images/
+          git diff --staged --quiet && echo "No changes to commit" || git commit -m "Update agent outputs and generated images"
           git push
 
       - name: Send Telegram report
