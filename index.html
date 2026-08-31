@@ -118,6 +118,14 @@
   .copy-btn:active { background: var(--cobalt); }
   .copy-btn.copied { background: var(--lime); color: var(--ink); }
 
+  /* Image thumbnail strip */
+  .thumb-strip {
+    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .thumb-link { flex-shrink: 0; display: block; border-radius: 3px; overflow: hidden; border: 1px solid var(--line); }
+  .thumb-img { display: block; width: 90px; height: 112px; object-fit: cover; background: var(--line); }
+
   /* Queue (compact tickets) */
   .queue-item {
     display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
@@ -185,6 +193,9 @@
   <div class="section-label">Field Report — Analyst</div>
   <div class="ticket" id="report"></div>
 
+  <div class="section-label">Image Bank</div>
+  <div id="imagebank"></div>
+
   <div class="section-label">Idea Bank</div>
   <div id="ideas"></div>
 
@@ -202,6 +213,7 @@ const FILES = {
   ideator: BASE + 'agent-outputs/ideator.json',
   hookscript: BASE + 'agent-outputs/hookscript.json',
   planner: BASE + 'agent-outputs/planner.json',
+  images: BASE + 'generated-images/manifest.json',
 };
 
 const AGENTS = [
@@ -258,7 +270,23 @@ function renderPipeline(outputs) {
   }).join('');
 }
 
-function renderHero(planner, hookscript) {
+/** Renders a horizontal strip of thumbnail links for one post's slide images.
+ * Tapping a thumbnail opens the full-size PNG in a new tab — on mobile,
+ * press-and-hold on that full image to save it to your phone. */
+function renderImageStrip(images, ideaTitle) {
+  if (!images || !images.items) return '';
+  const item = images.items.find(i => i.ideaTitle === ideaTitle);
+  if (!item || !item.files || item.files.length === 0) return '';
+  const base = `${BASE}generated-images/${item.slug}/`;
+  const thumbs = item.files.map((f, i) => `
+    <a href="${base}${f}" target="_blank" rel="noopener" class="thumb-link">
+      <img src="${base}${f}" alt="Slide ${i + 1}" loading="lazy" class="thumb-img">
+    </a>
+  `).join('');
+  return `<div class="thumb-strip">${thumbs}</div>`;
+}
+
+function renderHero(planner, hookscript, images) {
   const el = document.getElementById('hero');
   if (!planner || !planner.calendar || planner.calendar.length === 0) {
     el.innerHTML = `<div class="ticket"><div class="empty">No scheduled posts yet — run the agents to generate a plan.</div></div>`;
@@ -283,6 +311,8 @@ function renderHero(planner, hookscript) {
        <button class="copy-btn" id="copy-caption-btn">Copy caption</button>`
     : '';
 
+  const imageStripHtml = renderImageStrip(images, next.ideaTitle);
+
   el.innerHTML = `
     <div class="ticket hero fade-in">
       <div class="ticket-top">
@@ -293,6 +323,7 @@ function renderHero(planner, hookscript) {
       <div class="ticket-title">${escapeHtml(next.ideaTitle)}</div>
       ${next.note ? `<div class="ticket-note">${escapeHtml(next.note)}</div>` : ''}
       <div class="ticket-body">
+        ${imageStripHtml}
         ${script ? `<div class="hook-text">${escapeHtml(script.hook)}</div>` : ''}
         ${slidesHtml}
         ${captionHtml}
@@ -350,6 +381,40 @@ function renderReport(analyst) {
   `;
 }
 
+function renderImageBank(planner, images) {
+  const el = document.getElementById('imagebank');
+  if (!images || !images.items || images.items.length === 0) {
+    el.innerHTML = `<div class="ticket"><div class="empty">No images generated yet — run the image generator agent.</div></div>`;
+    return;
+  }
+
+  // Order by the planner's calendar if available, otherwise manifest order.
+  let ordered = images.items;
+  if (planner && planner.calendar && planner.calendar.length) {
+    const order = [...planner.calendar].sort((a, b) => (a.date > b.date ? 1 : -1));
+    ordered = order
+      .map(c => images.items.find(i => i.ideaTitle === c.ideaTitle))
+      .filter(Boolean);
+    // include any generated sets that aren't on the calendar, at the end
+    for (const item of images.items) {
+      if (!ordered.includes(item)) ordered.push(item);
+    }
+  }
+
+  el.innerHTML = ordered.map(item => {
+    const cal = planner && planner.calendar
+      ? planner.calendar.find(c => c.ideaTitle === item.ideaTitle)
+      : null;
+    return `
+      <div class="idea-card">
+        <div class="idea-title">${escapeHtml(item.ideaTitle)}</div>
+        ${cal ? `<div class="ticket-note" style="margin:2px 0 8px;">${fmtDate(cal.date)} · ${escapeHtml(cal.suggestedTime || '')}</div>` : ''}
+        ${renderImageStrip(images, item.ideaTitle)}
+      </div>
+    `;
+  }).join('');
+}
+
 function renderIdeas(ideator) {
   const el = document.getElementById('ideas');
   if (!ideator || !ideator.ideas || ideator.ideas.length === 0) {
@@ -366,12 +431,13 @@ function renderIdeas(ideator) {
 }
 
 async function init() {
-  const [data, analyst, ideator, hookscript, planner] = await Promise.all([
+  const [data, analyst, ideator, hookscript, planner, images] = await Promise.all([
     loadJson(FILES.data),
     loadJson(FILES.analyst),
     loadJson(FILES.ideator),
     loadJson(FILES.hookscript),
     loadJson(FILES.planner),
+    loadJson(FILES.images),
   ]);
 
   document.getElementById('handle').textContent = (data && data.myUsername) || 'creator';
@@ -385,9 +451,10 @@ async function init() {
   if (!mostRecent) document.getElementById('sync-dot').classList.add('grey');
 
   renderPipeline({ analyst, ideator, hookscript, planner });
-  renderHero(planner, hookscript);
+  renderHero(planner, hookscript, images);
   renderQueue(planner);
   renderReport(analyst);
+  renderImageBank(planner, images);
   renderIdeas(ideator);
 }
 
