@@ -1,70 +1,70 @@
 {
   "agent": "planner",
-  "generatedAt": "2026-08-30T19:46:45.222Z",
-  "cadenceNote": "Strategic 3x/day distribution balancing high-intent shopping scripts for evening slots, travel and casual essentials for afternoons, and quick style inspiration for mornings.",
+  "generatedAt": "2026-08-31T06:16:39.332Z",
+  "cadenceNote": "Strategic 3x/day distribution balancing casual everyday budget style in mornings and high-intent evening shopping drops.",
   "calendar": [
     {
-      "date": "2026-08-31",
-      "dayLabel": "Monday, Aug 31",
-      "suggestedTime": "11:00 AM IST",
-      "ideaTitle": "College Casuals Under ₹299",
-      "note": "Budget-friendly morning inspiration for students starting their week."
-    },
-    {
-      "date": "2026-08-31",
-      "dayLabel": "Monday, Aug 31",
-      "suggestedTime": "4:00 PM IST",
-      "ideaTitle": "Summer Linen Pants Under ₹499",
-      "note": "Afternoon comfort drop targeting warm-weather practical buying."
-    },
-    {
-      "date": "2026-08-31",
-      "dayLabel": "Monday, Aug 31",
-      "suggestedTime": "8:00 PM IST",
-      "ideaTitle": "Stacked Fit Denim Jeans Lookbook",
-      "note": "High-engagement streetwear aesthetic for peak evening scrolling."
-    },
-    {
       "date": "2026-09-01",
       "dayLabel": "Tuesday, Sep 1",
       "suggestedTime": "11:00 AM IST",
-      "ideaTitle": "Minimalist Smart Casual Shirts",
-      "note": "Clean, office-ready style inspiration to kick off Tuesday morning."
+      "ideaTitle": "College Casuals Under ₹499",
+      "note": "Light, budget-friendly morning content ideal for students starting their day."
     },
     {
       "date": "2026-09-01",
       "dayLabel": "Tuesday, Sep 1",
       "suggestedTime": "4:00 PM IST",
-      "ideaTitle": "Airport Look Essentials",
-      "note": "Afternoon travel comfort guide for mid-week planners."
+      "ideaTitle": "Trendy Denim Jeans Under ₹999",
+      "note": "Afternoon peak browsing for high-demand wardrobe essentials like denim."
     },
     {
       "date": "2026-09-01",
       "dayLabel": "Tuesday, Sep 1",
       "suggestedTime": "8:00 PM IST",
-      "ideaTitle": "Oversized Streetwear Hoodies Combo",
-      "note": "Cozy, high-appeal streetwear bundle for nighttime browsing."
+      "ideaTitle": "Date Night Outfit Combinations",
+      "note": "Evening engagement post focusing on styling inspiration and romantic outings."
     },
     {
       "date": "2026-09-02",
       "dayLabel": "Wednesday, Sep 2",
       "suggestedTime": "11:00 AM IST",
-      "ideaTitle": "Men's Streetwear Accessories & Fragrances",
-      "note": "Detail-oriented styling tips to get inspiration flowing mid-day."
+      "ideaTitle": "Summer Linen Pants & Shirts",
+      "note": "Fresh, breathable daytime wear ideal for a mid-week morning refresh."
     },
     {
       "date": "2026-09-02",
       "dayLabel": "Wednesday, Sep 2",
       "suggestedTime": "4:00 PM IST",
-      "ideaTitle": "All-Black Streetwear Essentials",
-      "note": "Versatile monochrome layering guide for afternoon engagement."
+      "ideaTitle": "Affordable Party Shirts For Men",
+      "note": "Mid-afternoon transition toward weekend nightlife and party planning."
     },
     {
       "date": "2026-09-02",
       "dayLabel": "Wednesday, Sep 2",
       "suggestedTime": "8:00 PM IST",
-      "ideaTitle": "Date Night Outfits Starting ₹699",
-      "note": "High-intent evening purchase content targeting weekend plans."
+      "ideaTitle": "Oversized Streetwear Hoodies",
+      "note": "High-intent evening drop for trendy, cozy streetwear purchases."
+    },
+    {
+      "date": "2026-09-03",
+      "dayLabel": "Thursday, Sep 3",
+      "suggestedTime": "11:00 AM IST",
+      "ideaTitle": "Minimalist Sneaker Rotation",
+      "note": "Everyday footwear inspiration to kickstart Thursday morning shopping."
+    },
+    {
+      "date": "2026-09-03",
+      "dayLabel": "Thursday, Sep 3",
+      "suggestedTime": "4:00 PM IST",
+      "ideaTitle": "Layering Essentials For Men",
+      "note": "Afternoon educational styling tips to elevate basic outfits."
+    },
+    {
+      "date": "2026-09-03",
+      "dayLabel": "Thursday, Sep 3",
+      "suggestedTime": "8:00 PM IST",
+      "ideaTitle": "Luxury Aesthetic Watch & Chain Combo",
+      "note": "High-ticket accessory finish to wrap up the content cycle with a premium aesthetic."
     }
   ]
 }
