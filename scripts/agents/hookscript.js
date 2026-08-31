@@ -36,7 +36,7 @@ function buildPrompt(ideator) {
   lines.push(`
 For EACH idea above, write:
 - hook: the exact text for slide 1 (carousel) or the first 2 seconds of spoken/on-screen text (reel) — must stop the scroll, specific to this content, not a generic phrase
-- slides: an array of the exact text for each subsequent slide (carousel) or each beat/moment (reel script) — write the real content, not placeholders like "show product here"
+- - slides: an array of the exact text for each subsequent slide (carousel) or each beat/moment (reel script) — write the real content, not placeholders like "show product here". Do NOT prefix each slide's text with "Slide 2:", "Slide 3:", etc. — just write the content itself, since slide numbers are shown separately.
 - caption: the full ready-to-post caption including the CTA
 
 Respond with ONLY valid JSON, no markdown fences, no commentary, matching exactly this shape:
